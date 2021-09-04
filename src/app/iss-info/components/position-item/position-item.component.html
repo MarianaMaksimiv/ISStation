@@ -1,0 +1,13 @@
+<mat-card class="iss_position" *ngIf="position" [ngClass]= "{ 'active': isSelected}">
+  <mat-card-header>
+    <mat-card-title>{{ position.name }}</mat-card-title>
+      <mat-icon class="x-icon" (click)="deletePosition()">clear</mat-icon>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="coordinats">
+      <span>Lat: {{ position.iss_position.latitude }}</span>
+      <span>Lon: {{ position.iss_position.longitude }}</span>
+    </div>
+    <span>Date: {{ position.timestamp | date: 'YYYY-dd-MM HH:mm:ss' }}</span>
+  </mat-card-content>
+</mat-card>

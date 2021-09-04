@@ -1,0 +1,11 @@
+<h2 class="heading">ISS Tracker</h2>
+
+<mat-form-field appearance="outline">
+    <input matInput [formControl]="filter" placeholder="Enter name">
+ </mat-form-field>
+
+<div *ngIf="(savedPositions$ | async) as positions" >
+    <div *ngFor="let position of positions">
+        <app-position-item [position]="position" (click)="selectLocation(position)"></app-position-item>
+    </div>
+</div>

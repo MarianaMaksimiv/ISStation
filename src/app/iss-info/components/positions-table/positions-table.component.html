@@ -1,0 +1,47 @@
+<div *ngIf="(savedPositions$ | async) as savedPositions; else empty">
+    <table class="table" mat-table [dataSource]="savedPositions">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Date Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let position"> {{position.timestamp | date:"HH:mm:ss"}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let position"> {{position.name}} </td>
+        </ng-container>
+      
+        <!-- Latitude Column -->
+        <ng-container matColumnDef="latitude">
+          <th mat-header-cell *matHeaderCellDef> Latitude </th>
+          <td mat-cell *matCellDef="let position"> {{position.iss_position.latitude}} </td>
+        </ng-container>
+      
+        <!-- Longitude Column -->
+        <ng-container matColumnDef="longitude">
+          <th mat-header-cell *matHeaderCellDef> Longitude </th>
+          <td mat-cell *matCellDef="let position"> {{position.iss_position.longitude}} </td>
+        </ng-container>
+
+        <!--  Column -->
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let position">
+                <mat-icon class="x-icon" (click)="deletePosition(position)">clear</mat-icon>
+            </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+</div>
+<ng-template #empty>
+    <div class="">
+        Positions table is empty.
+    </div>
+</ng-template>

@@ -1,0 +1,22 @@
+<mat-sidenav-container (keypress)="onKeyDown($event)">
+    <mat-sidenav mode="side" [opened] = "opened$ | async" class="sidenav">
+        <app-sidebar></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <header>
+            <app-header (toggle)="toggleSidebar()"></app-header>
+        </header>
+        <main>
+            <mat-tab-group>
+                <mat-tab label="Map">
+                    <div class="map-container">
+                        <app-map></app-map>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Report">
+                    <app-positions-table></app-positions-table>
+                </mat-tab>
+            </mat-tab-group>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

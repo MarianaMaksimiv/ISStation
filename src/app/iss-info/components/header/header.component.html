@@ -1,0 +1,20 @@
+<mat-toolbar>
+  <button mat-icon-button (click)="toggle.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div *ngIf="(currentInfo$ | async) as currentInfo" class="header-info">
+    <h2 class="header-info__heading">Current location</h2>
+    <div class="header-info__values" *ngIf="currentInfo.iss_position.latitude; else loading">
+      <div class="header-info__coordinates">
+        <span class="header-info__latitude">Latitude: {{ currentInfo.iss_position.latitude }}</span>
+        <span class="header-info__longitude">Longitude: {{ currentInfo.iss_position.longitude }}</span>
+      </div>
+      <span class="header-info__date">
+        Time: {{ currentInfo.timestamp | date: 'YYYY-dd-MM HH:mm:ss' }}
+      </span>
+    </div>
+    <ng-template #loading>
+        <div>Loading...</div>
+    </ng-template>
+  </div>
+</mat-toolbar>
